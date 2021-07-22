@@ -1,0 +1,76 @@
+version: '3'
+networks:
+    mvp_net:
+      ipam:
+        driver: default
+        config:
+          - subnet: 172.1.0.0/16
+
+
+volumes:
+    artifactory_data:
+    
+
+
+services:
+  artifactory:
+    image: docker.bintray.io/jfrog/artifactory-oss:6.23.13
+    container_name: artifactory
+    ports:
+     - 8098:8081
+    volumes:
+     - /data/artifactory:/var/opt/jfrog/artifactory
+#    environment:
+#     - EXTRA_JAVA_OPTIONS=-Xms512m -Xmx4g
+    restart: always
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 32000
+        hard: 40000
+    networks:
+      mvp_net:
+        ipv4_address: 172.1.0.10
+
+  jenkinsmaster:
+    build:
+      context: ./jenkins_master_build
+      args:
+        - HOST_DOCKER_GID=999
+    image: jenkins-master:v1
+    container_name: jenkinsmaster_mvp
+#    env_file:
+#      - jenkins.env
+    labels:
+      lab.at.description: "Jenkins master in docker with docker"
+#    privileged: true
+#    user: root
+    networks: [mvp_net]
+    ports:
+      - 8083:8080
+      - 50003:50000
+    container_name: jenkinsmaster-mvp
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      mvp_net:
+        ipv4_address: 172.1.0.20
+  
+  
+  jenkinsagent:
+    build:
+      context: ./jenkins_agent_build
+    image: jenkins-agent:v1
+    container_name: jenkinsagent_mvp
+ 
+    labels:
+      lab.at.description: "Jenkins ssh agent"
+#    privileged: true
+#    user: root
+    networks: [mvp_net]
+    ports:
+        - 2222:0022
+    networks:
+      mvp_net:
+        ipv4_address: 172.1.0.21
+

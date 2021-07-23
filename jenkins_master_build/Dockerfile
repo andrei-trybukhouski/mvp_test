@@ -1,7 +1,5 @@
-FROM jenkins/jenkins:lts
+FROM jenkins/jenkins:lts-jdk11
 LABEL maintainer="Andrei Trybukhouski andrei_trybukhouski@epam.com"
-
-FROM jenkins/jenkins:2.289.2-lts-jdk11
 USER root
 RUN apt-get update && apt-get install -y apt-transport-https \
        ca-certificates curl gnupg2 \

@@ -43,15 +43,15 @@ services:
 #    env_file:
 #      - jenkins.env
     environment:
-     - JAVA_OPTS=-Xmx1g
+     - JAVA_OPTS=-Xmx1g -Djenkins.install.runSetupWizard=false
     labels:
-      lab.at.description: "Jenkins master in docker with docker"
+      lab.at.description: "Jenkins master"
 #    privileged: true
 #    user: root
     ports:
       - 8083:8080
       - 50003:50000
-    container_name: jenkinsmaster-mvp
+    container_name: jenkinsmaster_mvp
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - jenkins_data:/var/jenkins_home
@@ -77,4 +77,3 @@ services:
     networks:
       mvp_net:
         ipv4_address: 172.172.0.21
-

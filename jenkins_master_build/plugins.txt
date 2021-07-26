@@ -1,6 +1,7 @@
 build-timeout:latest
 cloudbees-folder:latest
 configuration-as-code:latest
+job-dsl:latest
 credentials-binding:latest
 git:latest
 github-branch-source:latest
@@ -12,3 +13,4 @@ ssh-slaves:latest
 timestamper:latest
 workflow-aggregator:latest
 ws-cleanup:latest
+artifactory:latest

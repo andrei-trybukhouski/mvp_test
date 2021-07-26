@@ -16,7 +16,7 @@ node('') {
     }
 
     stage('BUILD') {
-      sh 'cd /buildroot && ./bootstrap.sh'    
+      sh 'cd /buildroot && ./bootstrap.sh'
       sh 'cd /buildroot && ./configure && make'
     }
 

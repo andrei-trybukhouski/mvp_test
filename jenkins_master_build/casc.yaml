@@ -1,0 +1,33 @@
+jenkins:
+  authorizationStrategy: "loggedInUsersCanDoAnything"
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: true
+  disableRememberMe: false
+  disabledAdministrativeMonitors:
+  - "hudson.diagnosis.ReverseProxySetupMonitor"
+  labelAtoms:
+  - name: "agent1"
+  - name: "master"
+  - name: "ubuntu,"
+  markupFormatter: "plainText"
+  mode: NORMAL
+  noUsageStatistics: true
+  nodes:
+  - permanent:
+      labelString: "ubuntu, agent1"
+      launcher:
+        ssh:
+          host: "172.172.0.21"
+          port: 22
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+          credentialsId: "agent_ssh_key"
+      name: "agent1"
+      nodeDescription: "1st agent"
+      remoteFS: "/buildroot"
+      retentionStrategy: "always"
+  numExecutors: 0
+
+  
+ 
+

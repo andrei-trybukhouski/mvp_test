@@ -9,13 +9,13 @@ jenkins:
   labelAtoms:
   - name: "agent1"
   - name: "master"
-  - name: "ubuntu,"
+  - name: "ubuntu"
   markupFormatter: "plainText"
   mode: NORMAL
   noUsageStatistics: true
   nodes:
   - permanent:
-      labelString: "ubuntu, agent1"
+      labelString: "ubuntu agent1"
       launcher:
         ssh:
           host: "172.172.0.21"

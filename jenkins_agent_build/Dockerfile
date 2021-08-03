@@ -17,15 +17,16 @@ RUN    adduser --quiet jenkins && \
     mkdir /home/jenkins/.m2 && \
     echo "jenkins  ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-#ADD settings.xml /home/jenkins/.m2/
+#COPY settings.xml /home/jenkins/.m2/
 
 COPY .ssh/authorized_keys /home/jenkins/.ssh/authorized_keys
 RUN chmod 600 /home/jenkins/.ssh/authorized_keys
 RUN chown -R jenkins:jenkins /home/jenkins/.m2/ && \
     chown -R jenkins:jenkins /home/jenkins/.ssh/ && \
-    mkdir /buildroot && chmod 777 /buildroot
+    mkdir -m 777 /buildroot 
 
 
 EXPOSE 22 
  
 CMD ["/usr/sbin/sshd", "-D"]
+VOLUME [ "/buildroot" ]

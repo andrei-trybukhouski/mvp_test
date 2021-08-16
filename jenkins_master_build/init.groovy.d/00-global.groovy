@@ -20,10 +20,10 @@ instance.setCrumbIssuer(new DefaultCrumbIssuer(true))
 instance.setNoUsageStatistics(true)
 instance.save()
 
-println "--> creating local user 'admin'"
-def hudsonRealm = new HudsonPrivateSecurityRealm(false)
-hudsonRealm.createAccount('admin','admin')
-instance.setSecurityRealm(hudsonRealm)
+// println "--> creating local user 'admin'"
+// def hudsonRealm = new HudsonPrivateSecurityRealm(false)
+// hudsonRealm.createAccount('admin','admin')
+// instance.setSecurityRealm(hudsonRealm)
 
 def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
 instance.setAuthorizationStrategy(strategy)

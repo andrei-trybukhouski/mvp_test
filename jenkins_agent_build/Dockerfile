@@ -1,9 +1,11 @@
-FROM ubuntu:18.04 
-
+FROM ubuntu:20.04 
 LABEL maintainer="Andrei Trybukhouski andrei_trybukhouski@epam.com"
 
-RUN apt-get update && \
-    apt-get -qy full-upgrade 
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Europe/Vilnius
+
+RUN apt-get update 
+    # apt-get -qy upgrade 
 RUN    apt-get install -qy sudo git openssh-server && \
     sed -i 's|session    required     pam_loginuid.so|session    optional     pam_loginuid.so|g' /etc/pam.d/sshd && \
     mkdir -p /var/run/sshd && \

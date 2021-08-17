@@ -40,12 +40,8 @@ services:
         - HOST_DOCKER_GID=999
     image: andreitrybukhouski/jenkins-master:v1
     container_name: jenkinsmaster_mvp
-#    env_file:
-#      - jenkins.env
-    environment:
-     - JAVA_OPTS=-Xmx1g -Djenkins.install.runSetupWizard=false
-     - JENKINS_ADMIN_ID=admin
-     - JENKINS_ADMIN_PASSWORD=admin
+    env_file:
+      - jenkins.env
     labels:
       lab.at.description: "Jenkins master"
 #    privileged: true

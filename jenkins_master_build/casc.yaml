@@ -33,6 +33,8 @@ jenkins:
       remoteFS: "/buildroot"
       retentionStrategy: "always"
   numExecutors: 0
+jobs:
+  - file: /var/jenkins_home/dsl/job1.groovy
 
   
  

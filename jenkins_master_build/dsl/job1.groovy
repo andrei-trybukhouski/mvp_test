@@ -12,10 +12,3 @@ pipelineJob('main_job') {
         }
     }
 }
-buildPipelineView('project-MVP') {
-    title('MVP Project Pipeline')
-    displayedBuilds(5)
-    selectedJob('main_job')
-    showPipelineParameters()
-    refreshFrequency(60)
-}

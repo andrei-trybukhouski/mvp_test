@@ -1,0 +1,1 @@
+eval "echo \"$(cat jenkins.env.shell)\"" > jenkins.env
